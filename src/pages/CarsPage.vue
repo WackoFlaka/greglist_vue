@@ -7,8 +7,8 @@
         </div>
         
         <section class="row">
-            <div class="col-12">
-                {{ cars }}
+            <div class="col-md-4" v-for="car in cars" :key="car.id">
+                {{  car.make  }}
             </div>
         </section>
     </div>
