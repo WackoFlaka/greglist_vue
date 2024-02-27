@@ -1,8 +1,10 @@
 <template>
-    <img :src="carProp.imgUrl" :alt="carProp.make + ' ' + carProp.model" class="img-fluid" role="button">
-        <div class="car-title">
-            <p class="fs-4 mb-1 ms-3">{{ carProp.make }} {{ carProp.model }}</p>
-        </div>
+    <router-link :to="{name: 'CarDetails'}">
+        <img :src="carProp.imgUrl" :alt="carProp.make + ' ' + carProp.model" class="img-fluid" role="button">
+            <div class="car-title">
+                <p class="fs-4 mb-1 ms-3">{{ carProp.make }} {{ carProp.model }}</p>
+            </div>
+    </router-link>
 </template>
 
 
