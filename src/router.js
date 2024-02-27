@@ -22,7 +22,7 @@ const routes = [
     component: loadPage('CarsPage')
   },
   {
-    path: '/cars/details',
+    path: '/cars/:carId',
     name: 'CarDetails',
     component: loadPage('CarDetailsPage')
     
