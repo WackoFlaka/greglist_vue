@@ -13,6 +13,9 @@
                 <h3>Listed by: {{ car.creator.name }}</h3>
                 <img :src="car.imgUrl" :alt="car.make + ' ' + car.model">
                 <p>{{ car.description }}</p>
+                <div>
+                    <button @click="destroyCar()" class="btn btn-danger">Delete Car</button>
+                </div>
             </div>
         </section>
     </div>
@@ -45,11 +48,26 @@ setup(){
         /* console.log('Mounted details page');
         logger.log('Route information', route)
         logger.log('Id from route', route.params.carId) */
+        carsService.clearAppState()
         getCarById()
     })
     
 return{
-    car: computed(() => AppState.activeCar)
+    car: computed(() => AppState.activeCar),
+    
+    async destroyCar() {
+        try {
+            const wantsToDelete = await Pop.confirm('Are you sure you want to delete this car?')
+            if(!wantsToDelete) {
+                return
+            }
+            const carId = route.params.carId
+            logger.log('deleteing car')
+            await carsService.destroyCar(carId)
+        } catch (error) {
+            Pop.error(error)
+        }
+    }
 }
 }
 }
